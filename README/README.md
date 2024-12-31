@@ -58,15 +58,15 @@ human-resource-machine/
 
 ##### 常量
 
-kMAX_BOX_NUMBER：输入的箱子的最多个数。
+- `kMAX_BOX_NUMBER`：输入的箱子的最多个数。
 
-kMAX_SPARE_NUMBER：最大空地数量。
+- `kMAX_SPARE_NUMBER`：最大空地数量。
 
-kMAX_NUMBER_OF_AVAILABLE_INSTRUCTIONS：最多可用指令。
+- `kMAX_NUMBER_OF_AVAILABLE_INSTRUCTIONS`：最多可用指令。
 
-kMAX_NUMBER_OF_LEVEL：关卡数量。
+- `kMAX_NUMBER_OF_LEVEL`：关卡数量。
 
-kMAX_INSTRUCTION_LENGTH：单条指令的最大长度。
+- `kMAX_INSTRUCTION_LENGTH`：单条指令的最大长度。
 
 ##### LEVEL类
 
@@ -74,39 +74,39 @@ kMAX_INSTRUCTION_LENGTH：单条指令的最大长度。
 
 ###### 变量
 
-int boxes[]：输入箱子的值，这里为了读取方便，存储是反过来的
+- `int boxes[]`：输入箱子的值，这里为了读取方便，存储是反过来的
 
-int box_number：输入箱子的个数
+- `int box_number`：输入箱子的个数
 
-int aim_outs：预期输出的箱子
+- `int aim_outs`：预期输出的箱子
 
-int aim_out_number：预期输出的箱子个数
+- `int aim_out_number`：预期输出的箱子个数
 
-int spare_number：可用空地数量
+- `int spare_number`：可用空地数量
 
-string available_instructions[]：可用指令
+- `string available_instructions[]`：可用指令
 
-int available_instruction_number：可用指令数量
+- `int available_instruction_number`：可用指令数量
 
 ###### 函数
 
 >LEVEL(const int boxes_input[], int box_number_input, const int aim_outs_input[], int aim_out_number_input, int spare_number_input, const string available_instructions_input[], int available_instruction_number)：将关卡信息初始化。
 
-LEVEL(string level_path)：读取文件，利用关卡文件初始化关卡。
+- `LEVEL(string level_path)`：读取文件，利用关卡文件初始化关卡。
 
-int get_box_number()：获取box_number。
+- `int get_box_number()`：获取box_number。
 
-int get_boxes(int index)：获取boxes[index]。
+- `int get_boxes(int index)`：获取boxes[index]。
 
-int get_aim_out_number()：获取aim_out_number。
+- `int get_aim_out_number()`：获取aim_out_number。
 
-int get_aim_outs(int index)：获取aim_outs[index]。
+- `int get_aim_outs(int index)`获取aim_outs[index]。
 
-int get_spare_number()：获取spare_number。
+- `int get_spare_number()`：获取spare_number。
 
-string get_available_instructions(int index)：获取available_instructions[index]。
+- `string get_available_instructions(int index)`：获取available_instructions[index]。
 
-int get_available_instruction_number：获取available_instruction_number。
+- `int get_available_instruction_number`：获取available_instruction_number。
 
 ##### ROBOTSYSTEM类
 
@@ -114,53 +114,53 @@ int get_available_instruction_number：获取available_instruction_number。
 
 ###### 变量
 
-LEVEL* level：存储关卡。
+- `LEVEL* level`：存储关卡。
 
-LEVEL* level_saved：存储初始化的关卡，重开时可以刷新。
+- `LEVEL* level_saved`：存储初始化的关卡，重开时可以刷新。
 
-int spares[]：空地的数值。
+- `int spares[]`：空地的数值。
 
-bool used_spares[]：空地是否被占用。
+- `bool used_spares[]`：空地是否被占用。
 
-int outs[]：输出的盒子的值。
+- `int outs[]`：输出的盒子的值。
 
-int out_number：输出的盒子数量。
+- `int out_number`：输出的盒子数量。
 
-int (ROBOTSYSTEM::*instructions[])(int)：输入的指令作为函数数组的存储。
+- `int (ROBOTSYSTEM::*instructions[])(int)`：输入的指令作为函数数组的存储。
 
-int instruction_operators[]：每个指令对应一个指令数，如jump的指令数是所要跳转的行数，如果指令本身没有指令数，那就记作-1.
+- `int instruction_operators[]`：每个指令对应一个指令数，如jump的指令数是所要跳转的行数，如果指令本身没有指令数，那就记作-1.
 
-int instruction_number：指令数量。
+- `int instruction_number`：指令数量。
 
-int robot_number：机器人头顶存储的数字。
+- `int robot_number`：机器人头顶存储的数字。
 
-bool is_robot_has_number：机器人头顶是否存储数值。
+- `bool is_robot_has_number`：机器人头顶是否存储数值。
 
-int execute_number：指令执行到的位置。由于有很多跳转逻辑，因此使用一个变量专门存储指令执行到哪里。
+- `int execute_number`：指令执行到的位置。由于有很多跳转逻辑，因此使用一个变量专门存储指令执行到哪里。
 
 ###### 函数
 
-ROBOTSYSTEM(LEVEL* l)：将关卡写入运行系统。
+- `ROBOTSYSTEM(LEVEL* l)`：将关卡写入运行系统。
 
-int inbox(int)：读取输入的盒子的值，默认输入inbox的参数是-1。这里规定，指令能执行且程序不中止返回1，指令能执行且程序中止（在inbox中是输入盒子已经读完）返回0，指令不能执行返回-1，下同。
+- `int inbox(int)`：读取输入的盒子的值，默认输入inbox的参数是-1。这里规定，指令能执行且程序不中止返回1，指令能执行且程序中止（在inbox中是输入盒子已经读完）返回0，指令不能执行返回-1，下同。
 
-int outbox(int)：将机器人头上的盒子输出到outs里。
+- `int outbox(int)`：将机器人头上的盒子输出到outs里。
 
-int add(int)：将机器人头上的值修改为robot_number+spares[op]，其中op是指令数，下同。
+- `int add(int)`：将机器人头上的值修改为robot_number+spares[op]，其中op是指令数，下同。
 
-int sub(int)：与add相似，相加变成相减。
+- `int sub(int)`：与add相似，相加变成相减。
 
-int copyto(int)：将机器人头上的值赋给空地。
+- `int copyto(int)`：将机器人头上的值赋给空地。
 
-int copyfrom(int)：将空地的值赋给机器人。
+- `int copyfrom(int)`：将空地的值赋给机器人。
 
-int jump(int)：跳到第op行指令。
+- `int jump(int)`：跳到第op行指令。
 
-int jumpifzero(int)：如果机器人头上的值不是0则不跳转，否则跳转到第op行指令。这里根据题意，不管跳转是否发生，如果第op行指令不存在，直接返回-1。
+- `int jumpifzero(int)`：如果机器人头上的值不是0则不跳转，否则跳转到第op行指令。这里根据题意，不管跳转是否发生，如果第op行指令不存在，直接返回-1。
 
-void instructions_input(int, string[])：将用户输入的指令转为int (ROBOTSYSTEM::*)(int)函数类型，存储到instructions函数数组里。
+- `void instructions_input(int, string[])`：将用户输入的指令转为int (ROBOTSYSTEM::*)(int)函数类型，存储到instructions函数数组里。
 
-int execution()：运行机器人系统并返回结果，在运行过程中输出信号给图形界面更新。首先删除旧的关卡，因为对其进行了一些修改，在使用level_saved重新初始化level。接着将所有变量全部初始化。之后开始执行运算，首先设int execute_count变量，统计指令一共执行了多少条，接着按指令的跳转逻辑顺序执行指令，并判断是否中止或异常，异常则返回-x，中止则判断是否与aim_outs目标输出一致，一致则返回0，否则返回+x。
+- `int execution()`：运行机器人系统并返回结果，在运行过程中输出信号给图形界面更新。首先删除旧的关卡，因为对其进行了一些修改，在使用level_saved重新初始化level。接着将所有变量全部初始化。之后开始执行运算，首先设int execute_count变量，统计指令一共执行了多少条，接着按指令的跳转逻辑顺序执行指令，并判断是否中止或异常，异常则返回-x，中止则判断是否与aim_outs目标输出一致，一致则返回0，否则返回+x。
 
 #### `main_game_robot_execute.cpp`
 
@@ -301,15 +301,11 @@ flowchart TD
 
 ### 整体游戏界面的设计
 
-//在此处贴图并配文字说明
-
 
 
 ##### 用户使用程序的流程图
 
-![image-20241231000633299](C:\Users\35551\Desktop\image-20241231000633299.png)
-
-
+![image-20241231000633299](C:\Users\35551\Desktop\README\image-20241231000633299.png)
 
 ## 游戏测试结果
 
